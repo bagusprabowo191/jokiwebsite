@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Joki Coding - Agus | Jasa Pembuatan Website</title>
+  <meta name="description" content="Jasa pembuatan website oleh Agus - harga mahasiswa 300rb, usaha/perusahaan 500rb. DP 100rb sebelum pengerjaan. Fitur: animasi, dark mode, responsive, efek hover." />
+  <style>
+    /* Reset & base */
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --muted:#64748b;
+      --accent:#6c5ce7;
+      --accent-2:#00b894;
+      --glass: rgba(255,255,255,0.6);
+      color-scheme: light dark;
+    }
+    [data-theme="dark"]{
+      --bg:#0b1020;
+      --card:#0f1724;
+      --muted:#9aa6c1;
+      --accent:#7c5cff;
+      --accent-2:#2ecc71;
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 500px at 10% 10%, rgba(108,92,231,0.06), transparent),
+                  radial-gradient(800px 400px at 90% 90%, rgba(0,184,148,0.04), transparent),
+                  var(--bg);
+      color: #0b1220;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+      transition:background .4s ease, color .3s ease;
+    }
+    [data-theme="dark"] body{color:#e6eef8}
+    .container{max-width:980px;margin:0 auto}
+    header{
+      display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:28px;
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:56px;height:56px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;box-shadow:0 6px 18px rgba(8,13,30,0.08);
+      transform:rotate(-8deg);
+    }
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted)}
+    .actions{display:flex;gap:8px;align-items:center}
+    .btn{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600;box-shadow:0 8px 24px rgba(76,58,183,0.12);
+    }
+    .ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:10px 12px;border-radius:10px}
+    [data-theme="dark"] .ghost{border:1px solid rgba(255,255,255,0.06)}
+    main{display:grid;grid-template-columns:1fr 360px;gap:24px}
+    @media(max-width:920px){main{grid-template-columns:1fr}}
+    .card{background:var(--card);border-radius:16px;padding:18px;box-shadow:0 6px 30px rgba(11,19,40,0.04);backdrop-filter: blur(6px);overflow:hidden}
+    .hero{padding:28px;border-radius:14px;position:relative;overflow:hidden}
+    .hero h2{margin:0 0 10px 0;font-size:22px}
+    .price-tag{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg,rgba(0,0,0,0.06),transparent);font-weight:700}
+    .features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+    @media(max-width:680px){.features{grid-template-columns:1fr}}
+    .feature{
+      padding:10px;border-radius:10px;border:1px dashed rgba(0,0,0,0.04);font-size:14px;background:linear-gradient(180deg, rgba(255,255,255,0.6), transparent);
+    }
+    [data-theme="dark"] .feature{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent)}
+    /* pricing */
+    .prices{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+    .price {
+      display:flex;align-items:center;justify-content:space-between;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent);
+    }
+    .price .title{font-weight:700}
+    .price .cost{font-size:18px;font-weight:800}
+    /* contact */
+    .contact{display:flex;flex-direction:column;gap:10px}
+    .wa{
+      display:flex;gap:10px;align-items:center;background:linear-gradient(90deg,#25D366,#128C7E);
+      color:white;padding:12px;border-radius:12px;text-decoration:none;font-weight:700;
+    }
+    /* small note box */
+    .note{font-size:13px;color:var(--muted);padding:10px;border-radius:10px;background:var(--glass)}
+    /* toggles */
+    .toggle{display:inline-flex;align-items:center;gap:8px}
+    .switch{
+      width:46px;height:26px;background:rgba(0,0,0,0.06);border-radius:999px;position:relative;padding:3px;cursor:pointer;
+    }
+    .thumb{width:20px;height:20px;background:white;border-radius:50%;position:absolute;left:3px;top:3px;transition:left .18s ease}
+    [data-theme="dark"] .switch{background:rgba(255,255,255,0.06)}
+    [data-theme="dark"] .thumb{left:23px}
+    /* animations & hover */
+    .fancy:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 40px rgba(8,12,40,0.12)}
+    .muted{color:var(--muted)}
+    a.small-link{font-size:13px;color:var(--accent);text-decoration:none}
+    /* footer */
+    footer{margin-top:22px;text-align:center;font-size:13px;color:var(--muted)}
+    /* responsive mobile CTA */
+    .mobile-cta{display:none;position:fixed;right:18px;bottom:18px;z-index:60}
+    @media(max-width:680px){.mobile-cta{display:block}}
+    /* subtle entrance */
+    .fade-up{opacity:0;transform:translateY(8px);animation:fadeUp .7s ease forwards}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+    /* code block style */
+    pre{background:rgba(0,0,0,0.04);padding:12px;border-radius:8px;overflow:auto}
+    [data-theme="dark"] pre{background:rgba(255,255,255,0.02))}
+    /* github/netlify badge */
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,rgba(0,0,0,0.04),transparent);font-weight:700;font-size:13px}
+  </style>
+</head>
+<body data-theme="light">
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">AG</div>
+        <div>
+          <h1>Joki Coding — Agus</h1>
+          <p class="lead">Pembuatan website + dukungan tugas akhir & laporan magang</p>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="toggle" title="Dark mode">
+          <div style="font-size:13px" id="themeLabel">Light</div>
+          <div class="switch" id="themeSwitch" role="button" aria-pressed="false">
+            <div class="thumb"></div>
+          </div>
+        </div>
+        <button class="btn" onclick="scrollToSection('contact')">Hubungi via WA</button>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="card hero fade-up">
+          <h2>Butuh website cepat, rapi, dan responsive?</h2>
+          <div style="display:flex;gap:16px;align-items:center;margin-top:8px;flex-wrap:wrap">
+            <span class="price-tag">Harga Mahasiswa: <strong>Rp 300.000</strong></span>
+            <span class="price-tag">Usaha / Perusahaan: <strong>Rp 500.000</strong></span>
+            <span class="badge">DP Rp 100.000 sebelum pengerjaan</span>
+          </div>
+
+          <p style="margin-top:12px" class="muted">
+            Untuk mahasiswa yang perlu joki website Tugas Akhir: website + PPT + penjelasan fitur = tambahan Rp 100.000 (total Rp 400.000).
+            Pengerjaan akan dimulai saat DP sebesar Rp 100.000 sudah diterima.
+          </p>
+
+          <div class="features" style="margin-top:16px">
+            <div class="feature">✨ Animasi menarik & mikro-interaksi</div>
+            <div class="feature">🌙 Dark mode + pilihan tema</div>
+            <div class="feature">📱 Responsive: HP, Tablet, Komputer</div>
+            <div class="feature">🎯 Efek hover, tombol CTA, dan transisi</div>
+          </div>
+
+          <div style="display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap">
+            <button class="btn fancy" onclick="scrollToSection('pricing')">Lihat Harga & Paket</button>
+            <a class="ghost" href="#fitur" onclick="scrollToSection('fitur')">Detail Fitur</a>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card fade-up" id="pricing" style="padding:18px">
+          <h3>Rincian Harga & Ketentuan</h3>
+          <div class="prices">
+            <div class="price">
+              <div>
+                <div class="title">Mahasiswa — Website untuk tugas & tugas akhir</div>
+                <div class="muted" style="font-size:13px">Termasuk: desain satu halaman atau multipage sederhana, form kontak, embed CV/Download CV</div>
+              </div>
+              <div class="cost">Rp 300.000</div>
+            </div>
+
+            <div class="price">
+              <div>
+                <div class="title">Paket Mahasiswa + PPT + Penjelasan fitur (opsional)</div>
+                <div class="muted" style="font-size:13px">Sesuai kebutuhan tugas akhir, termasuk file PPT + catatan untuk presentasi</div>
+              </div>
+              <div class="cost">+ Rp 100.000 → Total Rp 400.000</div>
+            </div>
+
+            <div class="price">
+              <div>
+                <div class="title">Usaha / Perusahaan</div>
+                <div class="muted" style="font-size:13px">Paket profesional, multi-halaman, optimasi SEO dasar</div>
+              </div>
+              <div class="cost">Rp 500.000</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px" class="note">
+            Ketentuan pembayaran: DP minimal Rp 100.000 (harus lunas sebelum pengerjaan). Sisa dibayar setelah demo dan persetujuan final.
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card fade-up" id="fitur" style="padding:18px">
+          <h3>Fitur Keren yang Akan Kamu Dapat</h3>
+          <ul style="margin-top:8px">
+            <li>Desain responsif (mobile-first) & layout yang bersih</li>
+            <li>Animasi CSS dan micro-interactions untuk pengalaman pengguna</li>
+            <li>Dark Mode otomatis & manual (toggle)</li>
+            <li>Efek hover pada tombol dan gambar</li>
+            <li>Form kontak + integrasi WhatsApp quick chat</li>
+            <li>Instruksi singkat untuk deploy ke GitHub & Netlify (lihat contoh di bawah)</li>
+          </ul>
+
+          <h4 style="margin-top:12px">Contoh instruksi integrasi GitHub → Netlify</h4>
+          <pre>
+1. Buat repository di GitHub, push semua file HTML/CSS/JS.
+2. Buka netlify.com → New site → Import from Git → pilih repo kamu.
+3. Atur build command (jika static single file: kosongkan) dan publish directory: /
+4. Deploy — setiap push ke main akan otomatis update.
+          </pre>
+
+          <div class="muted" style="margin-top:8px">Saya bantu setting awal jika diperlukan (bisa request tambahan).</div>
+        </div>
+
+      </section>
+
+      <aside>
+        <div class="card fade-up contact" id="contact" style="padding:18px">
+          <h3>Kontak — Agus</h3>
+          <div class="muted">Untuk pesan cepat: klik tombol WhatsApp atau hubungi langsung di nomor:</div>
+          <a class="wa" href="https://wa.me/6283874905302" target="_blank" rel="noopener">📲 WA: 0838-7490-5302</a>
+
+          <div style="height:12px"></div>
+          <div class="note">
+            Nama: <strong>Agus</strong><br>
+            Nomor WA: <strong>083874905302</strong><br>
+            Catatan: Pengerjaan dimulai setelah DP Rp 100.000 diterima.
+          </div>
+
+          <div style="height:12px"></div>
+          <div>
+            <div style="font-weight:700;margin-bottom:8px">Contoh layanan tambahan</div>
+            <ul style="margin:0;padding-left:16px">
+              <li>Laporan Magang → +Rp 100.000</li>
+              <li>Custom domain & setup SSL → biaya terpisah</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="card fade-up" style="padding:14px">
+          <h4 style="margin:0 0 8px 0">Demo & Catatan Teknis</h4>
+          <div class="muted" style="font-size:13px">
+            File ini adalah satu file HTML (all-in-one) yang bisa langsung di-deploy ke Netlify atau GitHub Pages. Cocok untuk tugas akhir, portofolio, dan usaha kecil.
+          </div>
+          <div style="height:10px"></div>
+          <div style="font-size:13px">
+            <div class="muted">Badge:</div>
+            <div style="margin-top:8px"><span class="badge">GitHub</span> <span class="badge">Netlify</span></div>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="card fade-up" style="padding:14px">
+          <h4 style="margin:0 0 8px 0">Cara order cepat</h4>
+          <ol style="margin:0;padding-left:18px">
+            <li>Chat WA: jelaskan paket & kirim materi (gambar, teks, logo).</li>
+            <li>Transfer DP Rp 100.000 → konfirmasi via WA.</li>
+            <li>Saya mulai kerjakan & kirim demo.</li>
+            <li>Perbaikan 1x included. Sisa pembayaran setelah selesai.</li>
+          </ol>
+        </div>
+      </aside>
+    </main>
+
+    <div class="mobile-cta">
+      <a class="btn" href="https://wa.me/6283874905302" target="_blank">Chat via WA</a>
+    </div>
+
+    <footer>
+      <div class="muted">© Agus — Joki Coding • Harga dapat berubah — gunakan informasi ini sebagai contoh penawaran.</div>
+    </footer>
+  </div>
+
+  <script>
+    // theme toggle
+    const switchEl = document.getElementById('themeSwitch');
+    const body = document.body;
+    const label = document.getElementById('themeLabel');
+
+    function setTheme(t){
+      document.documentElement.setAttribute('data-theme', t);
+      body.setAttribute('data-theme', t);
+      label.textContent = t === 'dark' ? 'Dark' : 'Light';
+      if(t === 'dark') switchEl.setAttribute('aria-pressed','true'); else switchEl.setAttribute('aria-pressed','false');
+    }
+    // preserve in localStorage
+    const saved = localStorage.getItem('jc_theme') || 'light';
+    setTheme(saved);
+    switchEl.addEventListener('click', ()=>{
+      const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+      localStorage.setItem('jc_theme', next);
+    });
+
+    // small scroll helper
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    // add simple entrance animation delay
+    document.querySelectorAll('.fade-up').forEach((el,i)=>{
+      el.style.animationDelay = (i*80)+'ms';
+    });
+
+    // copy WA number on click (for convenience)
+    document.querySelectorAll('.wa').forEach(a=>{
+      a.addEventListener('click', ()=> {
+        try{ navigator.clipboard && navigator.clipboard.writeText('083874905302'); } catch(e){}
+      });
+    });
+  </script>
+</body>
+</html>
